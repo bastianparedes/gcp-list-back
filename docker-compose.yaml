@@ -1,0 +1,39 @@
+version: "3.9"
+name: gcp_list
+services:
+
+  gcp-database:
+    env_file: .env.dev
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST: ${DATABASE_HOST:-localhost}
+      POSTGRES_USER: ${DATABASE_USER:-admin}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-12345}
+      POSTGRES_DB: ${DATABASE_NAME:-default}
+
+    # volumes:
+      # - ./src/services/db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+
+  gcp-backend:
+    env_file: .env.dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_PROTOCOL: ${DATABASE_PROTOCOL:-postgresql}
+      DATABASE_USER: ${DATABASE_USER:-admin}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-12345}
+      DATABASE_HOST: ${DATABASE_HOST:-database}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${DATABASE_NAME:-postgres}
+      DATABASE_SSL_MODE: ${DATABASE_SSL_MODE:-disable}
+      DATABASE_URI: "${DATABASE_PROTOCOL}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?sslmode=${DATABASE_SSL_MODE}"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - gcp-database
+    volumes:
+      - ./:/app
+      - /app/node_modules
