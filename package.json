@@ -8,8 +8,8 @@
     "lint": "eslint ./src/*",
     "lint:fix": "eslint ./src/* --fix",
     "test": "vitest run --coverage",
-    "db-generate": "drizzle-kit generate --config=./src/db/drizzle-dev.config.ts",
-    "db-migrate": "drizzle-kit migrate --config=./src/db/drizzle-dev.config.ts"
+    "db-generate": "drizzle-kit generate --config=./src/db/drizzle.config.ts",
+    "db-migrate": "drizzle-kit migrate --config=./src/db/drizzle.config.ts"
   },
   "author": "Bastian Gabriel Paredes Padget",
   "license": "ISC",
