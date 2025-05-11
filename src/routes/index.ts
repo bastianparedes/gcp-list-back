@@ -1,7 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import getUser from './user/get';
 import createUser from './user/create';
-import deleteUser from './user/delete';
 import updateUser from './user/update';
 
 const routes = async (server: FastifyInstance) => {
@@ -10,10 +9,6 @@ const routes = async (server: FastifyInstance) => {
   });
 
   server.register(createUser, {
-    prefix: '/user'
-  });
-
-  server.register(deleteUser, {
     prefix: '/user'
   });
 

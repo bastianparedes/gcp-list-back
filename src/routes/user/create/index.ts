@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { Static, Type } from '@sinclair/typebox';
+import { client, schema } from '../../../db';
 
 const body = Type.Object({
   name: Type.String()
@@ -15,8 +16,11 @@ export default async (server: FastifyInstance) => {
         body
       }
     },
-    (req, res) => {
-      res.code(200).send({ health: true, version: req.body.name });
+    async (req, res) => {
+      const result = await client.insert(schema.Users).values({
+        name: req.body.name
+      });
+      res.code(200).send({ health: true, version: result });
     }
   );
 

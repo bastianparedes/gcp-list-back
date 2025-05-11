@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     environment:
-      DATABASE_URI: "postgresql://admin:12345@localhost:5432/default?sslmode=disable"
+      DATABASE_URL: "postgresql://admin:12345@database:5432/default?sslmode=disable"
     ports:
       - 3000:3000
     depends_on:

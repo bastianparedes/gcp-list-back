@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { Static, Type } from '@sinclair/typebox';
+import { client, schema } from '../../../db';
 
 const querystring = Type.Object({
   limit: Type.Number()
@@ -15,8 +16,12 @@ export default async (server: FastifyInstance) => {
         querystring
       }
     },
-    (req, res) => {
-      res.code(200).send({ health: true, limit: req.query.limit });
+    async (req, res) => {
+      const users = await client
+        .select()
+        .from(schema.Users)
+        .limit(req.query.limit);
+      res.code(200).send(users);
     }
   );
 

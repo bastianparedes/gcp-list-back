@@ -1,5 +1,5 @@
 {
-  "id": "5322e2db-f6a7-4b15-9399-d5ed374d6508",
+  "id": "98946a4f-30a6-4412-858d-3233a4700761",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -45,18 +45,7 @@
       "isRLSEnabled": false
     }
   },
-  "enums": {
-    "public.status": {
-      "name": "status",
-      "schema": "public",
-      "values": [
-        "pending",
-        "authorized",
-        "paused",
-        "cancelled"
-      ]
-    }
-  },
+  "enums": {},
   "schemas": {},
   "sequences": {},
   "roles": {},

@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { Static, Type } from '@sinclair/typebox';
+import { client, operators, schema } from '../../../db';
 
 const body = Type.Object({
   id: Type.Number(),
@@ -16,8 +17,14 @@ export default async (server: FastifyInstance) => {
         body
       }
     },
-    (req, res) => {
-      res.code(200).send({ health: true, version: req.body.name });
+    async (req, res) => {
+      const response = await client
+        .update(schema.Users)
+        .set({
+          name: req.body.name
+        })
+        .where(operators.eq(schema.Users.id, req.body.id));
+      res.code(200).send(response);
     }
   );
 

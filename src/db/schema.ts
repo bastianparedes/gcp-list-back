@@ -1,17 +1,4 @@
-import {
-  timestamp,
-  pgTable,
-  serial,
-  varchar,
-  pgEnum
-} from 'drizzle-orm/pg-core';
-
-export const Status = pgEnum('status', [
-  'pending',
-  'authorized',
-  'paused',
-  'cancelled'
-]);
+import { timestamp, pgTable, serial, varchar } from 'drizzle-orm/pg-core';
 
 export const Users = pgTable('users', {
   id: serial('id').primaryKey().unique().notNull(),

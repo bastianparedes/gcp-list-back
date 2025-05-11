@@ -1,4 +1,3 @@
-CREATE TYPE "public"."status" AS ENUM('pending', 'authorized', 'paused', 'cancelled');--> statement-breakpoint
 CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(255) NOT NULL,
