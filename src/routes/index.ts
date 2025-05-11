@@ -6,19 +6,19 @@ import updateUser from './user/update';
 
 const routes = async (server: FastifyInstance) => {
   server.register(getUser, {
-    prefix: '/user/get'
+    prefix: '/user'
   });
 
   server.register(createUser, {
-    prefix: '/user/post'
+    prefix: '/user'
   });
 
   server.register(deleteUser, {
-    prefix: '/user/delete'
+    prefix: '/user'
   });
 
   server.register(updateUser, {
-    prefix: '/user/put'
+    prefix: '/user'
   });
 
   return server;

@@ -16,7 +16,7 @@ export default async (server: FastifyInstance) => {
       }
     },
     (req, res) => {
-      res.code(200).send({ health: true /* , version: req.query.limit */ });
+      res.code(200).send({ health: true, limit: req.query.limit });
     }
   );
 
